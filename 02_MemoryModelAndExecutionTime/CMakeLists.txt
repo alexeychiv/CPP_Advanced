@@ -7,7 +7,7 @@ project (${ProjectId})
 
 set(CMAKE_CXX_STANDARD 17)
 
-set(CMAKE_CXX_FLAGS_DEBUG "-O2 -g -Wall -Wextra")
+set(CMAKE_CXX_FLAGS_DEBUG "-g -Wall -Wextra")
 
 
 add_executable(${ProjectId} #WIN32
