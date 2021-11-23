@@ -59,7 +59,7 @@ std::wstring textFileToWString(const std::string & textFile)
     return result;
 }
 
-size_t countChars_countIf_find(std::wstring& wStr, std::unordered_set<wchar_t>& charSet)
+size_t countChars_countIf_find(const std::wstring& wStr, const std::unordered_set<wchar_t>& charSet)
 {
     Timer timer;
     
@@ -70,7 +70,7 @@ size_t countChars_countIf_find(std::wstring& wStr, std::unordered_set<wchar_t>& 
         );
 }
 
-size_t countChars_countIf_for(std::wstring& wStr, std::unordered_set<wchar_t>& charSet)
+size_t countChars_countIf_for(const std::wstring& wStr, const std::unordered_set<wchar_t>& charSet)
 {
     Timer timer;
     
@@ -85,7 +85,7 @@ size_t countChars_countIf_for(std::wstring& wStr, std::unordered_set<wchar_t>& c
         );
 }
 
-size_t countChars_for_find(std::wstring& wStr, std::unordered_set<wchar_t>& charSet)
+size_t countChars_for_find(const std::wstring& wStr, const std::unordered_set<wchar_t>& charSet)
 {
     Timer timer;
     
@@ -98,7 +98,7 @@ size_t countChars_for_find(std::wstring& wStr, std::unordered_set<wchar_t>& char
     return counter;
 }
 
-size_t countChars_for_for(std::wstring& wStr, std::unordered_set<wchar_t>& charSet)
+size_t countChars_for_for(const std::wstring& wStr, const std::unordered_set<wchar_t>& charSet)
 {
     Timer timer;
     
@@ -189,10 +189,10 @@ int main()
     {
         printf("====================\nTASK 3:\n\n");
         
-        std::unordered_set<wchar_t> vowels = { L'а', L'е', L'ё', L'и', L'й', L'о', L'у', L'ы', L'э',
+        const std::unordered_set<wchar_t> vowels = { L'а', L'е', L'ё', L'и', L'й', L'о', L'у', L'ы', L'э',
             L'ю', L'я', L'А', L'Е', L'Ё', L'И', L'Й', L'О', L'У', L'Ы', L'Э', L'Ю', L'Я' };
         
-        std::wstring text = textFileToWString("text.txt");
+        const std::wstring text = textFileToWString("text.txt");
         
         wprintf(L"text size = %d\n", text.size());
         
