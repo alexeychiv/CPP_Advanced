@@ -74,7 +74,7 @@ bool PhoneNumber::isStringNotNumber(const std::string & str)
 
 bool PhoneNumber::operator<(const PhoneNumber & other) const
 {
-    return std::make_tuple(countryCode, cityCode, number, additional.value_or(0)) 
+    return std::make_tuple(countryCode, cityCode, number, additional.value_or(0))
         < std::make_tuple(other.countryCode, other.cityCode, other.number, other.additional.value_or(0));
 }
 
