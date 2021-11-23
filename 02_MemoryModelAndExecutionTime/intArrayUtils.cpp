@@ -7,7 +7,7 @@
 
 namespace intArrayUtils
 {
-    void print(int * arr, const int SIZE)
+    void print(const int * arr, const int SIZE)
     {
         std::cout << "IntArray[" << SIZE << "]: { ";
         if (SIZE > 0)
@@ -60,7 +60,7 @@ namespace intArrayUtils
         }
     }
     
-    bool isSortedAscending(int * arr, const int SIZE)
+    bool isSortedAscending(const int * arr, const int SIZE)
     {
         for (int i = 1; i < SIZE; ++i)
             if (arr[i] < arr[i - 1])
@@ -68,7 +68,7 @@ namespace intArrayUtils
         return true;
     }
     
-    bool isAscendingSequence(int * arr, const int SIZE)
+    bool isAscendingSequence(const int * arr, const int SIZE)
     {
         for (int i = 1; i < SIZE; ++i)
             if (arr[i] - arr[i - 1] != 1)
@@ -76,7 +76,7 @@ namespace intArrayUtils
         return true;
     }
     
-    bool isSortedDescending(int * arr, const int SIZE)
+    bool isSortedDescending(const int * arr, const int SIZE)
     {
         for (int i = 1; i < SIZE; ++i)
             if (arr[i] > arr[i - 1])
@@ -84,7 +84,7 @@ namespace intArrayUtils
         return true;
     }
     
-    bool isDescendingSequence(int * arr, const int SIZE)
+    bool isDescendingSequence(const int * arr, const int SIZE)
     {
         for (int i = 1; i < SIZE; ++i)
             if (arr[i - 1] - arr[i] != 1)
