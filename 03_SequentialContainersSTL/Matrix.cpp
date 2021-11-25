@@ -4,6 +4,7 @@
 #include <vector>
 #include <cmath>
 #include <iomanip>
+#include <algorithm>
 
 
 Matrix::Matrix(const int* data, const size_t SIZE_X, const size_t SIZE_Y)
@@ -65,15 +66,36 @@ std::optional<int> Matrix::determinantGauss()
     
     std::vector<double> matrix {data, data + SIZE_X * SIZE_Y};
     
+    bool isPlus = true;
+    
     for (size_t start = 0; start < SIZE_Y; ++start)
+    {
+        if (matrix[getIndex(start, start)] == 0)
+        {
+            for (size_t y = start + 1; y < SIZE_Y; ++y)
+                if (matrix[getIndex(start, y)] !=0)
+                {
+                    isPlus = !isPlus;
+                    for (size_t x = start; x < SIZE_X; ++x)
+                        std::swap(matrix[getIndex(x, start)], matrix[getIndex(x, y)]);
+                }
+            
+            if (matrix[getIndex(start, start)] == 0)
+                return 0;
+        }
+        
         for (size_t y = start + 1; y < SIZE_Y; ++y)
         {
             double mult = matrix[getIndex(start, y)] / matrix[getIndex(start, start)];
             for (size_t x = start; x < SIZE_X; ++x)
                 matrix[getIndex(x, y)] -= mult * matrix[getIndex(x, start)];
         }
+    }
     
-    double det = 1;
+    if (matrix[getIndex(SIZE_X - 1, SIZE_Y - 1)] == 0)
+        return 0;
+    
+    double det {isPlus ? 1 : -1};
     for (size_t diagonal = 0; diagonal < SIZE_X; ++diagonal)
         det *= matrix[getIndex(diagonal, diagonal)];
     
