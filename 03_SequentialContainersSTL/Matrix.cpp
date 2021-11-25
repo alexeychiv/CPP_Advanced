@@ -107,7 +107,7 @@ std::ostream& operator<<(std::ostream& ostream, const Matrix& matrix)
     for (size_t y = 0; y < matrix.SIZE_Y; ++y)
     {
         for (size_t x = 0; x < matrix.SIZE_X; ++x)
-            ostream << std::setw(3) << matrix.data[matrix.getIndex(x, y)] << " ";
+            ostream << std::setw(4) << matrix.data[matrix.getIndex(x, y)];
         ostream << std::endl;
     }
     return ostream;
