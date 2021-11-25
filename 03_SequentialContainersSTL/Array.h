@@ -23,7 +23,7 @@ class Array
                 
                 Iterator& operator++ ()
                 {
-                    ptr++;
+                    ++ptr;
                     return *this;
                 }
                 
@@ -36,7 +36,7 @@ class Array
                 
                 Iterator& operator-- ()
                 {
-                    ptr--;
+                    --ptr;
                     return *this;
                 }
                 
