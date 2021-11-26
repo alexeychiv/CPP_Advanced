@@ -70,21 +70,27 @@ std::optional<int> Matrix::determinantGauss()
     
     for (size_t start = 0; start < SIZE_Y; ++start)
     {
+        size_t zeroShift = 0;
+        
         if (matrix[getIndex(start, start)] == 0)
         {
             for (size_t y = start + 1; y < SIZE_Y; ++y)
-                if (matrix[getIndex(start, y)] !=0)
+            {
+                if (matrix[getIndex(start, y)] != 0)
                 {
                     isPlus = !isPlus;
                     for (size_t x = start; x < SIZE_X; ++x)
                         std::swap(matrix[getIndex(x, start)], matrix[getIndex(x, y)]);
+                    break;
                 }
+                ++zeroShift;
+            }
             
             if (matrix[getIndex(start, start)] == 0)
                 return 0;
         }
         
-        for (size_t y = start + 1; y < SIZE_Y; ++y)
+        for (size_t y = start + 1 + zeroShift; y < SIZE_Y; ++y)
         {
             double mult = matrix[getIndex(start, y)] / matrix[getIndex(start, start)];
             for (size_t x = start; x < SIZE_X; ++x)
