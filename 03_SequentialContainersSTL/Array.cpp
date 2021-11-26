@@ -12,4 +12,5 @@ Array::Array(const int * data, const size_t SIZE)
 
 Array::~Array()
 {
+    delete[] data;
 }

@@ -14,7 +14,7 @@ void printListOfDoubles(const std::list<double>& listOfDoubles)
 {
     printf("List of doubles");
     
-    if (!listOfDoubles.size())
+    if (listOfDoubles.empty())
     {
         printf(" is empty...\n");
         return;
@@ -35,6 +35,9 @@ void printListOfDoubles(const std::list<double>& listOfDoubles)
 
 void addArythmeticMeanToList(std::list<double>& listOfDoubles)
 {
+    if (listOfDoubles.empty())
+        return;
+    
     double sum {0};
     for (const auto& it: listOfDoubles)
         sum += it;
