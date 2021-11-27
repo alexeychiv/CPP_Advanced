@@ -84,7 +84,9 @@ int main()
     {
         printf("====================\nTASK 1:\n\n");
         
-        std::vector<int> vec(10);
+        const size_t SIZE = 10;
+        
+        std::vector<int> vec(SIZE);
         std::iota(vec.begin(), vec.end(), 0);
         
         printf("Vector: ");
@@ -101,7 +103,7 @@ int main()
         printf("\n");
         
         
-        std::list<long> list(10);
+        std::list<long> list(SIZE);
         std::iota(list.begin(), list.end(), 0);
         
         printf("List: ");
