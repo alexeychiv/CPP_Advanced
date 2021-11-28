@@ -169,13 +169,13 @@ int main()
         std::vector<long> digital(SIZE);
         std::copy(a.begin(), a.end(), digital.begin());
         
-        /* printf("Analog: ");
+        printf("Analog: ");
         std::copy(a.begin(), a.end(), std::ostream_iterator<double>{std::cout, " "});
         printf("\n");
         
         printf("Digital: ");
         std::copy(digital.begin(), digital.end(), std::ostream_iterator<long>{std::cout, " "});
-        printf("\n"); */
+        printf("\n");
         
         printf("countError_for = %f", countError_for(a, digital));
         printf(" (%fms)\n", Timer::getLastElapsedMs());
