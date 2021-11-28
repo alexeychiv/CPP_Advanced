@@ -48,6 +48,27 @@ double countError_for(const std::vector<double>& analog, const std::vector<long>
     return error;
 }
 
+double countError_transform(std::vector<double>& analog, std::vector<long>& digital)
+{
+    if (analog.size() != digital.size())
+        return 0;
+    
+    Timer timer;
+    
+    double error = 0;
+    
+    std::transform(analog.begin(), analog.end(), digital.begin(), digital.end(), 
+        [&error](double d, long l)
+        {
+            error += (d - l) * (d - l);
+            return l;
+        }
+    );
+    
+    
+    return error;
+}
+
 double countError_boostForEach(const std::vector<double>& analog, const std::vector<long>& digital)
 {
     if (analog.size() != digital.size())
@@ -137,7 +158,7 @@ int main()
     {
         printf("====================\nTASK 2:\n\n");
         
-        const size_t SIZE {100};
+        const size_t SIZE {10};
         
         std::vector<double> a(SIZE);
         
@@ -148,18 +169,21 @@ int main()
         
         std::generate(a.begin(), a.end(), [&rng, &distribution](){return (double)distribution(rng) / 100;});
         
+        std::vector<long> digital(SIZE);
+        std::copy(a.begin(), a.end(), digital.begin());
+        
         printf("Analog: ");
         std::copy(a.begin(), a.end(), std::ostream_iterator<double>{std::cout, " "});
         printf("\n");
-        
-        std::vector<long> digital(SIZE);
-        std::copy(a.begin(), a.end(), digital.begin());
         
         printf("Digital: ");
         std::copy(digital.begin(), digital.end(), std::ostream_iterator<long>{std::cout, " "});
         printf("\n");
         
         printf("countError_for = %f", countError_for(a, digital));
+        printf(" (%fms)\n", Timer::getLastElapsedMs());
+        
+        printf("countError_transform = %f", countError_transform(a, digital));
         printf(" (%fms)\n", Timer::getLastElapsedMs());
         
         printf("countError_boostForEach = %f", countError_for(a, digital));
