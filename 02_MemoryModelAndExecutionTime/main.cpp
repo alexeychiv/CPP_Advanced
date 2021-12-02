@@ -6,6 +6,7 @@
 #include <unordered_set>
 #include <string>
 #include <fstream>
+
 #include <locale>
 #include <codecvt>
 
@@ -54,6 +55,7 @@ std::wstring textFileToWString(const std::string & textFile)
     {
         std::getline(ifs, buf);
         result.append(converter.from_bytes(buf));
+        result += L' ';
     }
     
     return result;
