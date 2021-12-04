@@ -41,19 +41,17 @@ bool isNumberPrime(const int number)
 	if (number < 4)
 		return true;
 	
+    if (number % 2 == 0)
+        return false;
+    
     double dividerLimit = sqrt(number);
     
-	for (int divider = 2; divider <= dividerLimit; ++divider)
+	for (int divider = 3; divider <= dividerLimit; divider += 2)
 		if (number % divider == 0)
 			return false;
 	
 	return true;
 }
-
-//=================================================================================================
-
-
-
 
 //=================================================================================================
 
@@ -100,8 +98,7 @@ int main()
     {
         printf("====================\nTASK 2:\n\n");
         
-        unsigned int primeIndex = 10;
-        //unsigned int primeIndex = 1'000'000;
+        unsigned int primeIndex = 1'000'000;
         unsigned int currentIndex = 0;
         
         std::thread threadFindPrimeObserver(
