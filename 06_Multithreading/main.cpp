@@ -98,7 +98,8 @@ int main()
     {
         printf("====================\nTASK 2:\n\n");
         
-        unsigned int primeIndex = 1'000'000;
+        //unsigned int primeIndex = 1'000'000;
+        unsigned int primeIndex = 100'000;
         unsigned int currentIndex = 0;
         
         std::thread threadFindPrimeObserver(
@@ -162,6 +163,7 @@ int main()
                 {
                     std::this_thread::sleep_for(std::chrono::milliseconds(1000));
                     printf("Master approaches the storage...\n");
+                    std::lock_guard<std::mutex> lock(storageMutex);
                     int newItem = rand() % 100;
                     std::this_thread::sleep_for(std::chrono::milliseconds(500));
                     printf("Master puts %d in storage --> [ ", newItem);
