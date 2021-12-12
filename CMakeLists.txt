@@ -7,4 +7,5 @@ add_subdirectory("04_AlgorithmsSTL")
 add_subdirectory("05_AssociativeContainersSTL")
 add_subdirectory("06_Multithreading")
 add_subdirectory("07_SerializingProtobuf")
+add_subdirectory("08_GTest")
 
