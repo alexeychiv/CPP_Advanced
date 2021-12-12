@@ -1,0 +1,6 @@
+
+
+message TestProtoMessage
+{
+    required string str = 1;
+}
