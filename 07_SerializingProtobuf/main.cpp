@@ -2,9 +2,13 @@
 #include <iostream>
 #include <fstream>
 
+#include <vector>
+#include <numeric>
+
 #include "test.pb.h"
 #include "Students.pb.h"
 #include "StudentsGroup.h"
+
 
 //=================================================================================================
 
@@ -51,11 +55,10 @@ int main()
         name1.set_middlename("Ivanovich");
         
         Students::Student student1;
-        student1.unsafe_arena_set_allocated_name(&name1);
-        student1.add_marks(4);
-        student1.add_marks(4);
-        student1.add_marks(5);
-        student1.set_averagemark(4.33);
+        student1.set_allocated_name(&name1);
+        std::vector<unsigned int> marks1 {4, 4, 5};
+        student1.mutable_marks()->Add(marks1.begin(), marks1.end());
+        student1.set_averagemark(std::accumulate(marks1.begin(), marks1.end(), 0.0) / marks1.size());
         
         printf("Student1: %s\n", student1.DebugString().c_str());
         
@@ -66,11 +69,11 @@ int main()
         name2.set_middlename("Petrovich");
         
         Students::Student student2;
-        student2.unsafe_arena_set_allocated_name(&name2);
-        student2.add_marks(3);
-        student2.add_marks(5);
-        student2.add_marks(4);
-        student2.set_averagemark(4);
+        student2.set_allocated_name(&name2);
+        std::vector<unsigned int> marks2 {3, 5, 4};
+        student2.mutable_marks()->Add(marks2.begin(), marks2.end());
+        student2.set_averagemark(std::accumulate(marks2.begin(), marks2.end(), 0.0) / marks2.size());
+        
         
         printf("Student2: %s\n", student2.DebugString().c_str());
         
@@ -81,11 +84,10 @@ int main()
         name3.set_middlename("Sidorovich");
         
         Students::Student student3;
-        student3.unsafe_arena_set_allocated_name(&name3);
-        student3.add_marks(3);
-        student3.add_marks(3);
-        student3.add_marks(5);
-        student3.set_averagemark(3.66);
+        student3.set_allocated_name(&name3);
+        std::vector<unsigned int> marks3 {4, 5, 4};
+        student3.mutable_marks()->Add(marks3.begin(), marks3.end());
+        student3.set_averagemark(std::accumulate(marks3.begin(), marks3.end(), 0.0) / marks3.size());
         
         printf("Student3: %s\n", student3.DebugString().c_str());
         
