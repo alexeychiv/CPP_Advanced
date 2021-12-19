@@ -21,7 +21,13 @@ TEST(Task1Test, FalseTest)
 //=================================================================================================
 // TASK 2
 
-class Task2Test: public testing::Test
+TEST(Task2Test1, PhoneBookConstructor)
+{
+    ASSERT_THROW(PhoneBook("blah.blah"), std::runtime_error);
+}
+
+
+class Task2Test2: public testing::Test
 {
     protected:
         PhoneBook* phoneBook;
@@ -36,13 +42,23 @@ class Task2Test: public testing::Test
         }
 };
 
-TEST_F(Task2Test, GetPhoneNumber)
+TEST_F(Task2Test2, GetPhoneNumber)
 {
-    std::cout << *phoneBook;
+    //std::cout << *phoneBook;
     
     ASSERT_TRUE(std::get<0>(phoneBook->GetPhoneNumber("Egorova")) == "not found");
     ASSERT_TRUE(std::get<1>(phoneBook->GetPhoneNumber("Egorov")) == "+77(4521)8880876 99");
     ASSERT_TRUE(std::get<0>(phoneBook->GetPhoneNumber("Ilin")) == "found more than 1");
+}
+
+TEST_F(Task2Test2, ChangePhoneNumber)
+{
+    Person p("Egorov", "Savelii", "Stanislavovich");
+    PhoneNumber n("55", "66", "77", "88");
+    
+    phoneBook->ChangePhoneNumber(p, n);
+    
+    ASSERT_TRUE(std::get<1>(phoneBook->GetPhoneNumber("Egorov")) == "+55(66)77 88");
 }
 
 
